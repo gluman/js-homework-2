@@ -3,17 +3,18 @@ const img_width_default = img.width
 const img_height_default = img.height
 let count_clicks = document.getElementById('clicker__counter')
 let count_speed = document.getElementById('speed__counter')
-let time_last
-console.log('1. time_last'+ time_last)
+let t = new Date()
+let time_last = t.getTime()
+
 img.onclick = () => {
     count_clicks.textContent++
-    let t = new Date()
-    let now = t.getTime()
-    if(time_last != 0){
-        count_speed.textContent = String(1/((now - time_last)/1000))
+    t = new Date()
+    now = t.getTime()
+    let speed = 1/((now - time_last)/1000)
+    if(speed > 0){
+        count_speed.textContent = String(speed.toFixed(2))
     }
     time_last = now
-    console.log('2. time_last' + time_last)
     if(img.width > img_width_default) {
         img.width = img_width_default
     }
